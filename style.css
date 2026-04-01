@@ -1,287 +1,93 @@
-/* 設定全域變數，方便統一修改顏色 */
 :root {
-    --bg-color: #FFF9E5;      /* 奶油黃：護眼且溫馨 */
-    --text-color: #333333;    /* 深灰色：比純黑柔和 */
-    --pixel-green: #4CAF50;   /* 像素綠：開始錄音 */
-    --pixel-orange: #FF9800;  /* 像素橘：提醒功能 */
-    --pixel-blue: #2196F3;    /* 像素藍：月曆功能 */
-}
-
-/* 基礎設定 */
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; /* 移除手機點擊時的藍色陰影 */
+    --bg-color: #fff9e6;
+    --text-color: #333;
+    --pixel-border: 4px solid #333;
 }
 
 body {
-    background-color: #e0e0e0; /* 外部背景色 */
-    font-family: 'DotGothic16', sans-serif;
-    margin: 0;
+    background-color: #ccc;
+    font-family: "Courier New", Courier, monospace;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    -webkit-user-select: none; /* 禁止選取文字，避免長輩操作困擾 */
+    padding: 20px;
 }
 
-/* 主容器：模擬手機介面 */
 .phone-container {
     background-color: var(--bg-color);
-    width: 100%;
-    max-width: 450px; /* 平板上也不會過寬 */
-    min-height: 100vh;
-    border: 6px solid var(--text-color);
-    padding: 25px;
-    color: var(--text-color);
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
-}
-
-/* 1. 好友區 */
-.friend-zone {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border-bottom: 4px dashed #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.avatar {
-    font-size: 60px;
-    background: #fff;
-    border: 4px solid var(--text-color);
-    padding: 10px;
-    image-rendering: pixelated; /* 強化像素感 */
-}
-
-.friend-info h2 {
-    margin: 0;
-    font-size: 1.8rem;
-}
-
-.friend-info p {
-    margin: 5px 0 0;
-    font-size: 1.2rem;
-    color: #666;
-}
-
-/* 2. 像素恐龍區 */
-.pet-area {
-    text-align: center;
-    margin-bottom: 25px;
+    width: 350px;
+    border: var(--pixel-border);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 10px 10px 0px #666;
 }
 
 .pixel-box {
-    border: 5px solid var(--text-color);
-    padding: 20px;
+    border: var(--pixel-border);
+    padding: 10px;
     background: white;
-    box-shadow: 6px 6px 0px #bbb;
-    position: relative;
-}
-
-#dino-sprite {
-    font-size: 80px;
-    margin-bottom: 10px;
-}
-
-#dino-status {
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-/* 3. 心情按鈕 */
-.mood-record h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.mood-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.mood-btn {
-    font-family: 'DotGothic16';
-    font-size: 1.3rem;
-    padding: 15px 5px;
-    border: 4px solid var(--text-color);
-    background: #fff;
-    cursor: pointer;
-    box-shadow: 3px 3px 0px var(--text-color);
-}
-
-.mood-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px var(--text-color);
-}
-
-/* 4. 錄音區 */
-.record-area {
     text-align: center;
-}
-
-.pixel-btn-green {
-    background-color: var(--pixel-green);
-    color: white;
-    font-size: 2rem; /* 超大字級 */
-    font-weight: bold;
-    padding: 25px;
-    width: 100%;
-    border: 5px solid #1B5E20;
-    font-family: 'DotGothic16';
     margin-bottom: 20px;
+}
+
+/* 按鈕樣式 */
+button {
     cursor: pointer;
-    box-shadow: 5px 5px 0px #1B5E20;
+    font-family: inherit;
+    border: var(--pixel-border);
+    margin: 5px;
+    padding: 10px;
 }
 
-.transcript-box {
-    background: #fff;
-    border: 4px solid var(--text-color);
-    min-height: 120px;
-    padding: 20px;
-    font-size: 1.6rem; /* 護眼大字 */
-    line-height: 1.5;
-    text-align: left;
-}
+.pixel-btn-green { background-color: #4caf50; color: white; width: 100%; font-size: 1.2rem; }
+.pixel-btn-blue { background-color: #2196f3; color: white; }
+.pixel-btn-orange { background-color: #ff9800; color: white; }
 
-/* 5. 底部導航 */
-.bottom-nav {
-    margin-top: 30px;
-    display: flex;
-    gap: 15px;
-}
-
-.bottom-nav button {
-    flex: 1;
-    padding: 18px;
-    font-family: 'DotGothic16';
-    font-size: 1.2rem;
-    border: 4px solid var(--text-color);
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.pixel-btn-orange { background: var(--pixel-orange); color: white; box-shadow: 4px 4px 0px #E65100; }
-.pixel-btn-blue { background: var(--pixel-blue); color: white; box-shadow: 4px 4px 0px #0D47A1; }
-/* 彈出視窗背景 */
+/* 視窗設定 */
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     z-index: 100;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7);
-}
-
-/* 視窗內容 */
-.modal-content {
-    background-color: var(--bg-color);
-    margin: 15% auto;
-    width: 85%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.close {
-    float: right;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-/* 像素格陣列 */
-.pixel-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin: 20px 0;
-}
-
-.pixel-day {
-    aspect-ratio: 1;
-    border: 2px solid #333;
-    background-color: #e0e0e0; /* 預設灰色：代表還沒打卡 */
-    cursor: pointer;
-    transition: transform 0.1s;
-}
-
-/* 已打卡的藍色（代表水） */
-.pixel-day.checked {
-    background-color: #2196F3; 
-    box-shadow: inset -4px -4px 0px #0D47A1;
-}
-
-.pixel-day:active {
-    transform: scale(0.9);
-}
-/* --- 彈出視窗（Modal）基礎設定 --- */
-.modal {
-    display: none;       /* 預設隱藏，只有點擊按鈕才會出現 */
-    position: fixed;     /* 固定在螢幕最上方 */
-    z-index: 999;        /* 確保層級最高，擋住背景 */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8); /* 半透明黑背景，增加儀式感 */
-    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
 }
 
-/* --- 視窗內部的白色區塊 --- */
 .modal-content {
-    background-color: var(--bg-color); /* 使用你設定的奶油黃 */
-    margin: 15% auto;     /* 距離頂部 15%，水平置中 */
+    background-color: var(--bg-color);
+    margin: 15% auto;
     padding: 20px;
-    border: 5px solid var(--text-color);
-    width: 85%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+    width: 80%;
+    max-width: 300px;
     position: relative;
 }
 
-/* --- 關閉按鈕 (X) --- */
 .close {
     position: absolute;
-    right: 15px;
-    top: 10px;
-    color: #aaa;
-    font-size: 40px;
-    font-weight: bold;
+    right: 10px;
+    top: 5px;
+    font-size: 28px;
     cursor: pointer;
 }
 
-.close:hover { color: black; }
-
-/* --- 打卡格子排列 --- */
+/* 格子設定 */
 .pixel-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 一橫排 5 格 */
-    gap: 10px;
-    margin: 20px 0;
-    padding: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 15px 0;
 }
 
-/* --- 單個格子的樣式 --- */
 .pixel-day {
-    aspect-ratio: 1;           /* 保持正方形 */
-    border: 3px solid #333;    /* 像素邊框 */
-    background-color: #ddd;    /* 預設未打卡的灰色 */
-    cursor: pointer;
+    aspect-ratio: 1;
+    background-color: #eee;
+    border: 2px solid #333;
+    /* 關鍵：讓格子不能被手指直接點擊變色 */
+    pointer-events: none; 
 }
 
-/* --- 已打卡的顏色（水藍色） --- */
 .pixel-day.checked {
-    background-color: #2196F3; 
-    box-shadow: inset -4px -4px 0px #0D47A1; /* 增加像素立體感 */
-}
-/* 強制點擊時不准有顏色反應 */
-.pixel-day {
-    pointer-events: none; /* 這行是關鍵！它會讓格子變成「透明人」，點不到它 */
-}
-
-/* 只有綠色按鈕觸發的 'checked' 才能有顏色 */
-.pixel-day.checked {
-    background-color: #2196F3 !important;
+    background-color: #2196f3;
+    box-shadow: inset -3px -3px 0px #0d47a1;
 }
