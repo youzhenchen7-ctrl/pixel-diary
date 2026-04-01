@@ -165,3 +165,40 @@ body {
 
 .pixel-btn-orange { background: var(--pixel-orange); color: white; box-shadow: 4px 4px 0px #E65100; }
 .pixel-btn-blue { background: var(--pixel-blue); color: white; box-shadow: 4px 4px 0px #0D47A1; }
+/* 彈出視窗背景 */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+/* 視窗內容 */
+.modal-content {
+    background-color: var(--bg-color);
+    margin: 15% auto;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* 像素格陣列 */
+.pixel-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.pixel-day {
+    aspect-ratio: 1;
+    border: 2px solid #333;
+}
