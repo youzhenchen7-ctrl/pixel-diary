@@ -1,0 +1,167 @@
+/* 設定全域變數，方便統一修改顏色 */
+:root {
+    --bg-color: #FFF9E5;      /* 奶油黃：護眼且溫馨 */
+    --text-color: #333333;    /* 深灰色：比純黑柔和 */
+    --pixel-green: #4CAF50;   /* 像素綠：開始錄音 */
+    --pixel-orange: #FF9800;  /* 像素橘：提醒功能 */
+    --pixel-blue: #2196F3;    /* 像素藍：月曆功能 */
+}
+
+/* 基礎設定 */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* 移除手機點擊時的藍色陰影 */
+}
+
+body {
+    background-color: #e0e0e0; /* 外部背景色 */
+    font-family: 'DotGothic16', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    -webkit-user-select: none; /* 禁止選取文字，避免長輩操作困擾 */
+}
+
+/* 主容器：模擬手機介面 */
+.phone-container {
+    background-color: var(--bg-color);
+    width: 100%;
+    max-width: 450px; /* 平板上也不會過寬 */
+    min-height: 100vh;
+    border: 6px solid var(--text-color);
+    padding: 25px;
+    color: var(--text-color);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+}
+
+/* 1. 好友區 */
+.friend-zone {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 4px dashed #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    font-size: 60px;
+    background: #fff;
+    border: 4px solid var(--text-color);
+    padding: 10px;
+    image-rendering: pixelated; /* 強化像素感 */
+}
+
+.friend-info h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.friend-info p {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* 2. 像素恐龍區 */
+.pet-area {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.pixel-box {
+    border: 5px solid var(--text-color);
+    padding: 20px;
+    background: white;
+    box-shadow: 6px 6px 0px #bbb;
+    position: relative;
+}
+
+#dino-sprite {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+#dino-status {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* 3. 心情按鈕 */
+.mood-record h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.mood-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.mood-btn {
+    font-family: 'DotGothic16';
+    font-size: 1.3rem;
+    padding: 15px 5px;
+    border: 4px solid var(--text-color);
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--text-color);
+}
+
+.mood-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--text-color);
+}
+
+/* 4. 錄音區 */
+.record-area {
+    text-align: center;
+}
+
+.pixel-btn-green {
+    background-color: var(--pixel-green);
+    color: white;
+    font-size: 2rem; /* 超大字級 */
+    font-weight: bold;
+    padding: 25px;
+    width: 100%;
+    border: 5px solid #1B5E20;
+    font-family: 'DotGothic16';
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0px #1B5E20;
+}
+
+.transcript-box {
+    background: #fff;
+    border: 4px solid var(--text-color);
+    min-height: 120px;
+    padding: 20px;
+    font-size: 1.6rem; /* 護眼大字 */
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* 5. 底部導航 */
+.bottom-nav {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.bottom-nav button {
+    flex: 1;
+    padding: 18px;
+    font-family: 'DotGothic16';
+    font-size: 1.2rem;
+    border: 4px solid var(--text-color);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pixel-btn-orange { background: var(--pixel-orange); color: white; box-shadow: 4px 4px 0px #E65100; }
+.pixel-btn-blue { background: var(--pixel-blue); color: white; box-shadow: 4px 4px 0px #0D47A1; }
