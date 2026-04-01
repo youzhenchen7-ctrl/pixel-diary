@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>像素風格長輩友善日記</title>
+    <title>像素風格長輩日記</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="phone-container">
         <header>
-            <div id="dino-display" class="pixel-box">
-                <div id="dino-sprite">🥚</div>
-                <p id="dino-status">恐龍蛋正在呼吸...</p>
+            <h2 id="user-name">阿公的專屬日記</h2> <div id="dino-display" class="pixel-box">
+                <div id="dino-sprite" style="font-size: 50px;">🥚</div>
+                <p id="dino-status">恐龍正在蛋裡睡覺...</p>
+                <div class="progress-bar-container">
+                    <div id="progress-fill"></div>
+                </div>
+                <small id="count-text">本月已打卡: 0 次</small>
             </div>
         </header>
 
@@ -23,11 +27,8 @@
                 <button class="mood-btn" onclick="setMood('😢')">😢<br>低落</button>
                 <button class="mood-btn" onclick="setMood('😆')">😆<br>很棒</button>
             </div>
-
             <button id="record-btn" class="pixel-btn-green" onclick="startRecording()">● 按住錄音</button>
-            <div id="transcript-display" class="transcript-box">
-                點擊按鈕說說話...
-            </div>
+            <div id="transcript-display" class="transcript-box">點擊按鈕說說話...</div>
         </section>
 
         <nav class="bottom-nav">
@@ -41,7 +42,6 @@
             <span class="close" onclick="closeCanvas()">&times;</span>
             <h2>本月喝水紀錄 💧</h2>
             <div id="pixel-grid" class="pixel-grid"></div>
-            <p>點擊下方按鈕完成打卡！</p>
             <button class="pixel-btn-green" onclick="checkInToday()">我喝水了！</button>
         </div>
     </div>
