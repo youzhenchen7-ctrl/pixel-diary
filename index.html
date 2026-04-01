@@ -49,25 +49,18 @@
             </div>
         </div>
     </section>
-
-    <nav class="bottom-nav">
+        <nav class="bottom-nav">
         <button class="pixel-btn-orange" onclick="alert('已提醒好友錄音囉！')">🔔 提醒他</button>
         <button class="pixel-btn-blue" onclick="openCanvas()">📅 健康打卡</button>
-
     </nav>
-<div id="canvas-modal" class="modal">
+</div> <div id="canvas-modal" class="modal">
     <div class="modal-content pixel-box">
         <span class="close" onclick="closeCanvas()">&times;</span>
         <h2>本月喝水紀錄 💧</h2>
-        <div class="pixel-grid" id="pixel-grid"></div>
+        <div id="pixel-grid" class="pixel-grid"></div>
         <p>點擊方塊完成今天的喝水打卡！</p>
         <button class="pixel-btn-green" onclick="checkInToday()">我喝水了！</button>
     </div>
-</div>
-
-    </div>
-</div>
-
 </div>
 
 <script src="script.js"></script>
