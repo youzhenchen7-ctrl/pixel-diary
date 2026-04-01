@@ -109,6 +109,16 @@ window.onload = () => {
     const randomPrompt = questionPrompts[Math.floor(Math.random() * questionPrompts.length)];
     transcriptDisplay.innerText = "今日小卡片：\n" + randomPrompt;
 };
+// 讓打卡視窗跳出來
+function openCanvas() {
+    document.getElementById('canvas-modal').style.display = "block";
+    renderWaterGrid(); // 畫出格子
+}
+
+// 讓打卡視窗關掉
+function closeCanvas() {
+    document.getElementById('canvas-modal').style.display = "none";
+}
 
 // 模擬紀錄，0 代表沒喝，1 代表有喝
 let waterRecord = Array(30).fill(0); 
