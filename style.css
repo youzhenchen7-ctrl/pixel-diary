@@ -276,3 +276,12 @@ body {
     background-color: #2196F3; 
     box-shadow: inset -4px -4px 0px #0D47A1; /* 增加像素立體感 */
 }
+/* 強制點擊時不准有顏色反應 */
+.pixel-day {
+    pointer-events: none; /* 這行是關鍵！它會讓格子變成「透明人」，點不到它 */
+}
+
+/* 只有綠色按鈕觸發的 'checked' 才能有顏色 */
+.pixel-day.checked {
+    background-color: #2196F3 !important;
+}
