@@ -109,3 +109,27 @@ window.onload = () => {
     const randomPrompt = questionPrompts[Math.floor(Math.random() * questionPrompts.length)];
     transcriptDisplay.innerText = "今日小卡片：\n" + randomPrompt;
 };
+// 控制畫布開啟
+function openCanvas() {
+    document.getElementById('canvas-modal').style.display = "block";
+    generatePixels();
+}
+
+// 關閉畫布
+function closeCanvas() {
+    document.getElementById('canvas-modal').style.display = "none";
+}
+
+// 模擬生成本週的心情顏色
+function generatePixels() {
+    const grid = document.getElementById('pixel-grid');
+    grid.innerHTML = ""; // 清空舊的
+    const colors = ['#4CAF50', '#FF9800', '#2196F3', '#FFF9E5', '#4CAF50', '#F44336', '#FF9800'];
+    
+    colors.forEach(color => {
+        const div = document.createElement('div');
+        div.className = 'pixel-day';
+        div.style.backgroundColor = color;
+        grid.appendChild(div);
+    });
+}
