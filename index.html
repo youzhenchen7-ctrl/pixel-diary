@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>像素聯絡簿 - 溫馨交換日記</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</head>
+<body>
+
+<div class="phone-container">
+    <header class="friend-zone">
+        <div class="avatar">👵</div>
+        <div class="friend-info">
+            <h2>小明的奶奶</h2>
+            <p>連續記錄：<span id="streak-days">5</span> 天</p>
+        </div>
+    </header>
+
+    <section class="pet-area">
+        <div id="dino-box" class="pixel-box">
+            <div id="dino-sprite">🥚</div>
+            <p id="dino-status">恐龍蛋正在呼吸...</p>
+        </div>
+    </section>
+
+    <section class="mood-record">
+        <h3>今天心情如何？</h3>
+        <div class="mood-buttons">
+            <button class="mood-btn" onclick="setMood('😊')">😊<br>開心</button>
+            <button class="mood-btn" onclick="setMood('💢')">💢<br>生氣</button>
+            <button class="mood-btn" onclick="setMood('😢')">😢<br>低落</button>
+            <button class="mood-btn" onclick="setMood('😆')">😆<br>很棒</button>
+        </div>
+
+        <div class="record-area">
+            <button id="record-btn" class="pixel-btn-green">● 按住錄音</button>
+            <div id="transcript-display" class="transcript-box">
+                點擊按鈕說說話...
+            </div>
+        </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <button class="pixel-btn-orange" onclick="alert('已提醒好友錄音囉！')">🔔 提醒他</button>
+        <button class="pixel-btn-blue">📅 心情畫布</button>
+    </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
