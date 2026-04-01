@@ -1,7 +1,25 @@
-// 確保資料能存下來，不會重整就消失
+// --- 1. 資料存儲：讓紀錄存在平板裡 ---
 let waterRecord = JSON.parse(localStorage.getItem('water_data')) || Array(30).fill(0);
 
-// --- 1. 畫出格子 (加入鎖定邏輯) ---
+// --- 2. 打卡視窗控制 ---
+function openCanvas() {
+    const modal = document.getElementById('canvas-modal');
+    if (modal) {
+        modal.style.display = "block";
+        renderWaterGrid(); // 打開時畫出格子
+    } else {
+        alert("找不到畫布視窗！");
+    }
+}
+
+function closeCanvas() {
+    const modal = document.getElementById('canvas-modal');
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+// --- 3. 畫出 30 個格子 (喝水紀錄) ---
 function renderWaterGrid() {
     const grid = document.getElementById('pixel-grid');
     if (!grid) return;
@@ -9,47 +27,42 @@ function renderWaterGrid() {
 
     waterRecord.forEach((status, index) => {
         const div = document.createElement('div');
-        // 這裡如果是 1 就是藍色，0 就是灰色
+        // 如果 status 為 1，就加上 checked 類別變成藍色
         div.className = 'pixel-day' + (status === 1 ? ' checked' : '');
         
-        // 【重要】這裡空空的，就是為了讓手動點擊「完全失效」
+        // 鎖定格子點擊，避免亂掉
         div.onclick = null; 
-        
         grid.appendChild(div);
     });
 }
 
-// --- 2. 讓按鈕「自動找下一格」打卡 ---
+// --- 4. 綠色按鈕打卡功能 (照順序) ---
 function checkInToday() {
-    // 找出第一個還沒變藍色的格子 (值為 0 的位置)
-    const nextEmptyIndex = waterRecord.indexOf(0);
-
-    if (nextEmptyIndex !== -1) {
-        // 把這一格變藍色
-        waterRecord[nextEmptyIndex] = 1;
-        
-        // 存進瀏覽器記憶體
-        localStorage.setItem('water_data', JSON.stringify(waterRecord));
-        
-        // 重新畫圖
-        renderWaterGrid();
-        
-        if (navigator.vibrate) navigator.vibrate(50);
-        alert("打卡成功！第 " + (nextEmptyIndex + 1) + " 格亮起 💧");
+    // 找出第一個為 0 (灰色) 的位置
+    const nextIndex = waterRecord.indexOf(0);
+    
+    if (nextIndex !== -1) {
+        waterRecord[nextIndex] = 1;
+        localStorage.setItem('water_data', JSON.stringify(waterRecord)); // 存檔
+        renderWaterGrid(); // 更新畫面
+        alert("喝水打卡成功！💧");
     } else {
-        alert("太棒了，本月已全數達成！🏆");
+        alert("這個月已經填滿囉！太棒了 🏆");
     }
 }
 
-// --- 3. 基本開關功能 ---
-function openCanvas() {
-    document.getElementById('canvas-modal').style.display = "block";
-    renderWaterGrid();
+// --- 5. 心情按鈕功能 ---
+function setMood(emoji) {
+    alert("今天的心情是 " + emoji + "，已經記在心裡囉！");
 }
 
-function closeCanvas() {
-    document.getElementById('canvas-modal').style.display = "none";
+// --- 6. 錄音按鈕模擬 ---
+function startRecording() {
+    const display = document.getElementById('transcript-display');
+    if (display) {
+        display.innerText = "正在錄音中...";
+        setTimeout(() => {
+            display.innerText = "「今天去散步了，心情很好！」";
+        }, 1500);
+    }
 }
-
-// 初始化
-window.onload = () => { console.log("健康助手已就緒"); };
