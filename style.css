@@ -201,4 +201,17 @@ body {
 .pixel-day {
     aspect-ratio: 1;
     border: 2px solid #333;
+    background-color: #e0e0e0; /* 預設灰色：代表還沒打卡 */
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+/* 已打卡的藍色（代表水） */
+.pixel-day.checked {
+    background-color: #2196F3; 
+    box-shadow: inset -4px -4px 0px #0D47A1;
+}
+
+.pixel-day:active {
+    transform: scale(0.9);
 }
