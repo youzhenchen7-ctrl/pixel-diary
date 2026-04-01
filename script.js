@@ -15,7 +15,7 @@ function updateDino() {
     if (count === 0) {
         sprite.innerText = "🥚";
         status.innerText = "恐龍還是一顆蛋...";
-    } else if (count > 0 && count < 7) {
+    } else if (count > 0 && count < 5) {
         sprite.innerText = "🐣";
         status.innerText = "喔！蛋裂開了！";
     } else if (count >= 5 && count < 15) {
