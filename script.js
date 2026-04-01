@@ -109,20 +109,50 @@ window.onload = () => {
     const randomPrompt = questionPrompts[Math.floor(Math.random() * questionPrompts.length)];
     transcriptDisplay.innerText = "今日小卡片：\n" + randomPrompt;
 };
-// 控制畫布開啟
+
+// 模擬紀錄，0 代表沒喝，1 代表有喝
+let waterRecord = Array(30).fill(0); 
+
 function openCanvas() {
     document.getElementById('canvas-modal').style.display = "block";
-    generatePixels();
+    renderWaterGrid();
 }
 
-// 關閉畫布
+function renderWaterGrid() {
+    const grid = document.getElementById('pixel-grid');
+    grid.innerHTML = "";
+
+    waterRecord.forEach((status, index) => {
+        const div = document.createElement('div');
+        div.className = 'pixel-day';
+        if (status === 1) div.classList.add('checked');
+        
+        // 點擊小方塊也可以切換狀態
+        div.onclick = () => toggleCheck(index);
+        grid.appendChild(div);
+    });
+}
+
+// 今天的打卡功能
+function checkInToday() {
+    // 假設今天是第 12 天 (你可以根據日期自動計算)
+    const todayIndex = 11; 
+    waterRecord[todayIndex] = 1;
+    renderWaterGrid();
+    
+    // 恐龍給予鼓勵
+    document.getElementById('dino-status').innerText = "太棒了！多喝水身體好！";
+    document.getElementById('dino-sprite').innerText = "🦕";
+    
+    if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+    alert("打卡成功！今天也要補充水分喔 💧");
+}
+
+function toggleCheck(index) {
+    waterRecord[index] = waterRecord[index] === 0 ? 1 : 0;
+    renderWaterGrid();
+}
+
 function closeCanvas() {
     document.getElementById('canvas-modal').style.display = "none";
-}
-
-// 模擬生成本週的心情顏色
-function generatePixels() {
-    const grid = document.getElementById('pixel-grid');
-    grid.innerHTML = ""; // 清空舊的
-    const colors = ['#4CAF50', '#FF9800', '#2196F3', '#FFF9E5', '
 }
