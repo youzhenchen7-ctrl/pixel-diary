@@ -124,12 +124,5 @@ function closeCanvas() {
 function generatePixels() {
     const grid = document.getElementById('pixel-grid');
     grid.innerHTML = ""; // 清空舊的
-    const colors = ['#4CAF50', '#FF9800', '#2196F3', '#FFF9E5', '#4CAF50', '#F44336', '#FF9800'];
-    
-    colors.forEach(color => {
-        const div = document.createElement('div');
-        div.className = 'pixel-day';
-        div.style.backgroundColor = color;
-        grid.appendChild(div);
-    });
+    const colors = ['#4CAF50', '#FF9800', '#2196F3', '#FFF9E5', '
 }
