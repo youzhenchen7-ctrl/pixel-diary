@@ -1,68 +1,43 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>像素聯絡簿 - 溫馨交換日記</title>
-    
-    <link rel="manifest" href="manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
-</head>
-<body>
+// 清除可能干擾的舊資料
+console.log("程式碼載入成功！");
 
-<div class="phone-container">
-    <header class="friend-zone">
-        <div class="avatar">👵</div>
-        <div class="friend-info">
-            <h2>小明的奶奶</h2>
-            <p>連續記錄：<span id="streak-days">5</span> 天</p>
-        </div>
-    </header>
+let waterRecord = JSON.parse(localStorage.getItem('water_data')) || Array(30).fill(0);
 
-    <section class="pet-area">
-        <div id="dino-box" class="pixel-box">
-            <div id="dino-sprite">🥚</div>
-            <p id="dino-status">恐龍蛋正在呼吸...</p>
-        </div>
-    </section>
+// 開啟視窗
+function openCanvas() {
+    console.log("正在嘗試開啟視窗...");
+    const modal = document.getElementById('canvas-modal');
+    if (modal) {
+        modal.style.display = "block";
+        renderWaterGrid();
+    } else {
+        alert("錯誤：找不到 canvas-modal！請檢查 index.html");
+    }
+}
 
-    <section class="mood-record">
-        <h3>今天心情如何？</h3>
-        <div class="mood-buttons">
-            <button class="mood-btn" onclick="setMood('😊')">😊<br>開心</button>
-            <button class="mood-btn" onclick="setMood('💢')">💢<br>生氣</button>
-            <button class="mood-btn" onclick="setMood('😢')">😢<br>低落</button>
-            <button class="mood-btn" onclick="setMood('😆')">😆<br>很棒</button>
-        </div>
+// 關閉視窗
+function closeCanvas() {
+    document.getElementById('canvas-modal').style.display = "none";
+}
 
-        <div class="record-area">
-            <button id="record-btn" class="pixel-btn-green">● 按住錄音</button>
-            <div id="transcript-display" class="transcript-box">
-                點擊按鈕說說話...
-            </div>
-        </div>
-    </section>
-        <nav class="bottom-nav">
-        <button class="pixel-btn-orange" onclick="alert('已提醒好友錄音囉！')">🔔 提醒他</button>
-        <button class="pixel-btn-blue" onclick="openCanvas()">📅 健康打卡</button>
-    </nav>
-</div> <div id="canvas-modal" class="modal">
-    <div class="modal-content pixel-box">
-        <span class="close" onclick="closeCanvas()">&times;</span>
-        <h2>本月喝水紀錄 💧</h2>
-        <div id="pixel-grid" class="pixel-grid"></div>
-        <p>點擊方塊完成今天的喝水打卡！</p>
-        <button class="pixel-btn-green" onclick="checkInToday()">我喝水了！</button>
-    </div>
-</div>
+// 畫格子
+function renderWaterGrid() {
+    const grid = document.getElementById('pixel-grid');
+    if (!grid) return;
+    grid.innerHTML = "";
+    waterRecord.forEach((status, index) => {
+        const div = document.createElement('div');
+        div.className = 'pixel-day' + (status === 1 ? ' checked' : '');
+        grid.appendChild(div);
+    });
+}
 
-<script src="final_script.js"></script>
-</body>
-</html>
+// 喝水打卡
+function checkInToday() {
+    const nextIndex = waterRecord.indexOf(0);
+    if (nextIndex !== -1) {
+        waterRecord[nextIndex] = 1;
+        localStorage.setItem('water_data', JSON.stringify(waterRecord));
+        renderWaterGrid();
+    }
+}
