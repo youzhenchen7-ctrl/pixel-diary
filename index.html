@@ -52,16 +52,19 @@
 
     <nav class="bottom-nav">
         <button class="pixel-btn-orange" onclick="alert('已提醒好友錄音囉！')">🔔 提醒他</button>
-        <button class="pixel-btn-blue" onclick="openCanvas()">📅 心情畫布</button>
+        <button class="pixel-btn-blue" onclick="openCanvas()">📅 健康打卡</button>
 
     </nav>
-    <div id="canvas-modal" class="modal">
+<div id="canvas-modal" class="modal">
     <div class="modal-content pixel-box">
         <span class="close" onclick="closeCanvas()">&times;</span>
-        <h2>本週心情畫布 🎨</h2>
-        <div class="pixel-grid" id="pixel-grid">
-            </div>
-        <p>每一格代表一天的回憶喔！</p>
+        <h2>本月喝水紀錄 💧</h2>
+        <div class="pixel-grid" id="pixel-grid"></div>
+        <p>點擊方塊完成今天的喝水打卡！</p>
+        <button class="pixel-btn-green" onclick="checkInToday()">我喝水了！</button>
+    </div>
+</div>
+
     </div>
 </div>
 
